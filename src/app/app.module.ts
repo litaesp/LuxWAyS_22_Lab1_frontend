@@ -3,7 +3,8 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptor } from './utils/authconfig.interceptor'
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -25,6 +26,7 @@ import {
 } from './containers';
 
 import {
+  AlertModule,
   AvatarModule,
   BadgeModule,
   BreadcrumbModule,
@@ -61,6 +63,7 @@ const APP_CONTAINERS = [
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
+    AlertModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AvatarModule,
@@ -92,6 +95,11 @@ const APP_CONTAINERS = [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

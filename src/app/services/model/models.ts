@@ -13,4 +13,4 @@ export * from './inlineResponse400';
 export * from './usernameEmailBody';
 export * from './usernamePasswordBody';
 export * from './credentials';
-export * from './v1RegisterBody';
+export * from './user';

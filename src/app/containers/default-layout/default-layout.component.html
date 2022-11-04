@@ -1,29 +1,29 @@
 <!--sidebar-->
 <c-sidebar
   #sidebar="cSidebar"
-  class="d-print-none sidebar sidebar-fixed"
+  class="d-print-none sidebar-fixed"
   id="sidebar"
   visible
 >
-  <c-sidebar-brand
+  <c-sidebar-brand class="sidebar-header"
     [brandFull]="{
-      src: 'assets/img/brand/coreui-angular.svg',
+      src: 'assets/img/brand/Logo.png',
       width: 200,
       height: 46,
-      alt: 'CoreUI Logo'
+      alt: 'Lita Logo'
     }"
     [brandNarrow]="{
-      src: 'assets/img/brand/coreui-signet-white.svg',
+      src: 'assets/img/brand/Logo.png',
       width: 46,
       height: 46,
-      alt: 'CoreUI Logo'
+      alt: 'Lita Logo'
     }"
     routerLink="./"
   >
   </c-sidebar-brand>
-    <perfect-scrollbar [config]="perfectScrollbarConfig">
+    <perfect-scrollbar class="sidebar-menu" [config]="perfectScrollbarConfig">
   <!--  [perfectScrollbar]="perfectScrollbarConfig"-->
-  <c-sidebar-nav
+  <c-sidebar-nav 
     [navItems]="navItems"
   >
   </c-sidebar-nav>

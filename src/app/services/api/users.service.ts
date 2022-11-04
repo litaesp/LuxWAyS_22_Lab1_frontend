@@ -26,10 +26,11 @@ import { InlineResponse400 } from '../model/inlineResponse400';
 import { UsernameEmailBody } from '../model/usernameEmailBody';
 import { UsernamePasswordBody } from '../model/usernamePasswordBody';
 import { Credential } from '../model/credentials';
-import { V1RegisterBody } from '../model/v1RegisterBody';
+import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -41,7 +42,7 @@ export class UsersService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration, public router: Router) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -274,10 +275,10 @@ export class UsersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsUsersRegisterUser(body: V1RegisterBody, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
-    public apiViewsUsersRegisterUser(body: V1RegisterBody, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
-    public apiViewsUsersRegisterUser(body: V1RegisterBody, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
-    public apiViewsUsersRegisterUser(body: V1RegisterBody, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersRegisterUser(body: User, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
+    public apiViewsUsersRegisterUser(body: User, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
+    public apiViewsUsersRegisterUser(body: User, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
+    public apiViewsUsersRegisterUser(body: User, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersRegisterUser.');
@@ -418,4 +419,18 @@ export class UsersService {
         );
     }
 
+    getToken() {
+        return localStorage.getItem('access_token');
+      }
+
+      get isLoggedIn(): boolean {
+        let authToken = localStorage.getItem('access_token');
+        return authToken !== null ? true : false;
+      }
+      doLogout() {
+        let removeToken = localStorage.removeItem('access_token');
+        if (removeToken == null) {
+          this.router.navigate(['log-in']);
+        }
+      }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/api/users.service';
-import { Credential, V1RegisterBody } from '../../../services/model/models'
+import { Credential, InlineResponse2005, User } from '../../../services/model/models'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,12 +15,18 @@ export class LoginComponent {
     password: new FormControl(''),
   });
   credentials: Credential = {};
-  constructor(private userServices: UsersService) { }
+  constructor(private userServices: UsersService, private router: Router) { }
 
   onSubmit() {
     this.credentials = {password: this.logForm.value.password?.toString() , username: this.logForm.value.username?.toString()};
-    let result = this.userServices.apiViewsUsersLoginUser(this.credentials).subscribe();
-    console.warn(result);
+    this.userServices.apiViewsUsersLoginUser(this.credentials).subscribe((res: InlineResponse2005) => {
+      localStorage.setItem('access_token', 'true');
+      console.log(res)
+      if(res.auth_token){
+        localStorage.setItem('access_token', res.auth_token);
+        this.router.navigate(["/"]);
+      }
+    });
   }
 
 }

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface V1RegisterBody { 
+export interface User { 
     username?: string;
     password?: string;
     email?: string;

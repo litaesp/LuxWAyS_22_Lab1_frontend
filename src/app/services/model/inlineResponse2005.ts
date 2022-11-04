@@ -12,6 +12,7 @@
 
 export interface InlineResponse2005 { 
     authToken?: string;
+    auth_token?: string;
     message?: string;
     status?: InlineResponse2005.StatusEnum;
 }
