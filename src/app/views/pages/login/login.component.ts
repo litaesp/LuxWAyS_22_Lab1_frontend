@@ -8,24 +8,29 @@ import { Credential, InlineResponse2005, User } from '../../../services/model/mo
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent{
 
   logForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
   credentials: Credential = {};
+  errorMessage:String='';
   constructor(private userServices: UsersService, private router: Router) { }
 
   onSubmit() {
     this.credentials = {password: this.logForm.value.password?.toString() , username: this.logForm.value.username?.toString()};
     this.userServices.apiViewsUsersLoginUser(this.credentials).subscribe((res: InlineResponse2005) => {
-      localStorage.setItem('access_token', 'true');
-      console.log(res)
       if(res.auth_token){
         localStorage.setItem('access_token', res.auth_token);
         this.router.navigate(["/"]);
+      }else {
+        this.errorMessage = res.message ? res.message : '';
       }
+
+    },
+    (error)=>{
+      
     });
   }
 

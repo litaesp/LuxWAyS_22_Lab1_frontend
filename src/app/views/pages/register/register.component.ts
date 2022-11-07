@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/api/users.service';
-import { User } from 'src/app/services/model/user';
+import { User } from 'src/app/services/model/user.model';
 
 @Component({
   selector: 'app-register',

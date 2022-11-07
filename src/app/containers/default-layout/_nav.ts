@@ -7,8 +7,8 @@ export const navItems: INavData[] = [
     title: true
   },
   {
-    name: 'Widgets',
-    url: '/widgets',
+    name: 'Bibliotheque',
+    url: '/pages/library',
     iconComponent: { name: 'cil-calculator' },
     badge: {
       color: 'info',

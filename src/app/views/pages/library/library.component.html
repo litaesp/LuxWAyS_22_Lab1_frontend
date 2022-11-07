@@ -1,0 +1,13 @@
+<c-row *ngIf="books" [gutter]="4" class="mb-3" [md]="3" [xs]="1">
+  <c-col *ngFor="let book of books">
+    <c-card>
+      <!-- <img cCardImg="top" src="./assets/images/book.png"> -->
+      <c-card-body>
+        <h5 cCardTitle>{{book.book_title}}</h5>
+        <p cCardText>
+          author: <em style="color: blue;">{{book.user}}</em>
+        </p>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

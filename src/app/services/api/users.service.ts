@@ -10,12 +10,14 @@
  * Do not edit the class manually.
  *//* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional }                      from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+import { Inject, Injectable, Optional } from '@angular/core';
+import {
+    HttpClient, HttpHeaders, HttpParams,
+    HttpResponse, HttpEvent
+} from '@angular/common/http';
+import { CustomHttpUrlEncodingCodec } from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { InlineResponse2002 } from '../model/inlineResponse2002';
 import { InlineResponse2003 } from '../model/inlineResponse2003';
@@ -26,23 +28,23 @@ import { InlineResponse400 } from '../model/inlineResponse400';
 import { UsernameEmailBody } from '../model/usernameEmailBody';
 import { UsernamePasswordBody } from '../model/usernamePasswordBody';
 import { Credential } from '../model/credentials';
-import { User } from '../model/user';
+import { User } from '../model/user.model';
 
-import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
-import { Configuration }                                     from '../configuration';
+import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
+import { Configuration } from '../configuration';
 import { Router } from '@angular/router';
 
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class UsersService {
 
     protected basePath = 'http://localhost:5000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration, public router: Router) {
+    constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration, public router: Router) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -76,7 +78,7 @@ export class UsersService {
     public apiViewsUsersDebug(observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2003>>;
     public apiViewsUsersDebug(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2003>>>;
     public apiViewsUsersDebug(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2003>>>;
-    public apiViewsUsersDebug(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersDebug(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -93,7 +95,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<InlineResponse2003>>('get',`${this.basePath}/users/v1/_debug`,
+        return this.httpClient.request<Array<InlineResponse2003>>('get', `${this.basePath}/users/v1/_debug`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -113,7 +115,7 @@ export class UsersService {
     public apiViewsUsersDeleteUser(username: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
     public apiViewsUsersDeleteUser(username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
     public apiViewsUsersDeleteUser(username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
-    public apiViewsUsersDeleteUser(username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersDeleteUser(username: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (username === null || username === undefined) {
             throw new Error('Required parameter username was null or undefined when calling apiViewsUsersDeleteUser.');
@@ -134,7 +136,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<InlineResponse2004>('delete',`${this.basePath}/users/v1/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<InlineResponse2004>('delete', `${this.basePath}/users/v1/${encodeURIComponent(String(username))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -153,7 +155,7 @@ export class UsersService {
     public apiViewsUsersGetAllUsers(observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2002>>;
     public apiViewsUsersGetAllUsers(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2002>>>;
     public apiViewsUsersGetAllUsers(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2002>>>;
-    public apiViewsUsersGetAllUsers(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersGetAllUsers(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -170,7 +172,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<InlineResponse2002>>('get',`${this.basePath}/users/v1`,
+        return this.httpClient.request<Array<InlineResponse2002>>('get', `${this.basePath}/users/v1`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -190,7 +192,7 @@ export class UsersService {
     public apiViewsUsersGetByUsername(username: string, observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2006>>;
     public apiViewsUsersGetByUsername(username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2006>>>;
     public apiViewsUsersGetByUsername(username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2006>>>;
-    public apiViewsUsersGetByUsername(username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersGetByUsername(username: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (username === null || username === undefined) {
             throw new Error('Required parameter username was null or undefined when calling apiViewsUsersGetByUsername.');
@@ -211,7 +213,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<InlineResponse2006>>('get',`${this.basePath}/users/v1/${encodeURIComponent(String(username))}`,
+        return this.httpClient.request<Array<InlineResponse2006>>('get', `${this.basePath}/users/v1/${encodeURIComponent(String(username))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -231,7 +233,7 @@ export class UsersService {
     public apiViewsUsersLoginUser(body: Credential, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2005>;
     public apiViewsUsersLoginUser(body: Credential, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2005>>;
     public apiViewsUsersLoginUser(body: Credential, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2005>>;
-    public apiViewsUsersLoginUser(body: Credential, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersLoginUser(body: Credential, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersLoginUser.');
@@ -257,7 +259,7 @@ export class UsersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<InlineResponse2005>('post',`${this.basePath}/users/v1/login`,
+        return this.httpClient.request<InlineResponse2005>('post', `${this.basePath}/users/v1/login`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -278,7 +280,7 @@ export class UsersService {
     public apiViewsUsersRegisterUser(body: User, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
     public apiViewsUsersRegisterUser(body: User, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
     public apiViewsUsersRegisterUser(body: User, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
-    public apiViewsUsersRegisterUser(body: User, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersRegisterUser(body: User, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersRegisterUser.');
@@ -304,7 +306,7 @@ export class UsersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<InlineResponse2004>('post',`${this.basePath}/users/v1/register`,
+        return this.httpClient.request<InlineResponse2004>('post', `${this.basePath}/users/v1/register`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -326,7 +328,7 @@ export class UsersService {
     public apiViewsUsersUpdateEmail(body: UsernameEmailBody, username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiViewsUsersUpdateEmail(body: UsernameEmailBody, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiViewsUsersUpdateEmail(body: UsernameEmailBody, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiViewsUsersUpdateEmail(body: UsernameEmailBody, username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersUpdateEmail(body: UsernameEmailBody, username: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersUpdateEmail.');
@@ -356,7 +358,7 @@ export class UsersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/users/v1/${encodeURIComponent(String(username))}/email`,
+        return this.httpClient.request<any>('put', `${this.basePath}/users/v1/${encodeURIComponent(String(username))}/email`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -378,7 +380,7 @@ export class UsersService {
     public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersUpdatePassword.');
@@ -408,7 +410,7 @@ export class UsersService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/users/v1/${encodeURIComponent(String(username))}/password`,
+        return this.httpClient.request<any>('put', `${this.basePath}/users/v1/${encodeURIComponent(String(username))}/password`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -421,16 +423,27 @@ export class UsersService {
 
     getToken() {
         return localStorage.getItem('access_token');
-      }
+    }
 
-      get isLoggedIn(): boolean {
+    get isLoggedIn(): boolean {
         let authToken = localStorage.getItem('access_token');
-        return authToken !== null ? true : false;
-      }
-      doLogout() {
+        if(authToken && this.tokenExpired(authToken)){
+            let removeToken = localStorage.removeItem('access_token');
+            if (removeToken == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    doLogout() {
         let removeToken = localStorage.removeItem('access_token');
         if (removeToken == null) {
-          this.router.navigate(['log-in']);
+            this.router.navigate(['log-in']);
         }
-      }
+    }
+
+    private tokenExpired(token: string) {
+        const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+        return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }
 }

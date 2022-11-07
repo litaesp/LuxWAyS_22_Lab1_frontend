@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface InlineResponse2007Books { 
+export interface Book { 
     bookTitle?: string;
-    user?: string;
+    secret?: string;
 }

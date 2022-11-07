@@ -17,9 +17,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { BooksV1Body } from '../model/booksV1Body';
+import { Book } from '../model/models';
 import { InlineResponse2004 } from '../model/inlineResponse2004';
-import { InlineResponse2007 } from '../model/inlineResponse2007';
+import { BooksResponse } from '../model/books-response.model';
 import { InlineResponse2008 } from '../model/inlineResponse2008';
 import { InlineResponse400 } from '../model/inlineResponse400';
 
@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class BooksService {
 
     protected basePath = 'http://localhost:5000';
@@ -68,13 +68,13 @@ export class BooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsBooksAddNewBook(body: BooksV1Body, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
-    public apiViewsBooksAddNewBook(body: BooksV1Body, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
-    public apiViewsBooksAddNewBook(body: BooksV1Body, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
-    public apiViewsBooksAddNewBook(body: BooksV1Body, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addNewBook(body: Book, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
+    public addNewBook(body: Book, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
+    public addNewBook(body: Book, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
+    public addNewBook(body: Book, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling apiViewsBooksAddNewBook.');
+            throw new Error('Required parameter body was null or undefined when calling AddNewBook.');
         }
 
         let headers = this.defaultHeaders;
@@ -114,10 +114,10 @@ export class BooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsBooksGetAllBooks(observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2007>;
-    public apiViewsBooksGetAllBooks(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2007>>;
-    public apiViewsBooksGetAllBooks(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2007>>;
-    public apiViewsBooksGetAllBooks(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAllBooks(observe?: 'body', reportProgress?: boolean): Observable<BooksResponse>;
+    public getAllBooks(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BooksResponse>>;
+    public getAllBooks(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BooksResponse>>;
+    public getAllBooks(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -134,7 +134,7 @@ export class BooksService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<InlineResponse2007>('get',`${this.basePath}/books/v1`,
+        return this.httpClient.request<BooksResponse>('get',`${this.basePath}/books/v1`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -151,13 +151,13 @@ export class BooksService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsBooksGetByTitle(bookTitle: string, observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2008>>;
-    public apiViewsBooksGetByTitle(bookTitle: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2008>>>;
-    public apiViewsBooksGetByTitle(bookTitle: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2008>>>;
-    public apiViewsBooksGetByTitle(bookTitle: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByTitle(bookTitle: string, observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2008>>;
+    public getByTitle(bookTitle: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2008>>>;
+    public getByTitle(bookTitle: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2008>>>;
+    public getByTitle(bookTitle: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (bookTitle === null || bookTitle === undefined) {
-            throw new Error('Required parameter bookTitle was null or undefined when calling apiViewsBooksGetByTitle.');
+            throw new Error('Required parameter bookTitle was null or undefined when calling GetByTitle.');
         }
 
         let headers = this.defaultHeaders;

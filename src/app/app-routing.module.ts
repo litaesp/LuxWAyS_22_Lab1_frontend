@@ -7,8 +7,14 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from "./utils/auth.guard";
+import { LibraryComponent } from './views/pages/library/library.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'Library',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -37,6 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'pages',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
@@ -61,7 +68,7 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'Login Page'
-    }
+    },
   },
   {
     path: 'register',
@@ -70,7 +77,21 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'Home'}
+  {
+    path: 'library',
+    component: LibraryComponent,
+    data: {
+      title: 'Library'
+    },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
+  {path: '**', redirectTo: '404'}
 ];
 
 @NgModule({

@@ -9,8 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2007Books } from './inlineResponse2007Books';
+import { UserBook } from './user-book.model';
 
-export interface InlineResponse2007 { 
-    books?: Array<InlineResponse2007Books>;
+export interface BooksResponse { 
+    Books?: Array<UserBook>;
 }

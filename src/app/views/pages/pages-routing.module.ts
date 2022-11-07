@@ -4,6 +4,8 @@ import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LibraryComponent } from './library/library.component';
+import { SecretpageComponent } from './secretpage/secretpage.component';
 
 const routes: Routes = [
   {
@@ -28,10 +30,24 @@ const routes: Routes = [
     }
   },
   {
+    path: 'library',
+    component: LibraryComponent,
+    data: {
+      title: 'Bibliotheque'
+    }
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'blog/topsecret/upcoming/event/cybersecurite-2023',
+    component: SecretpageComponent,
+    data: {
+      title: 'cybersecurite-2023'
     }
   }
 ];

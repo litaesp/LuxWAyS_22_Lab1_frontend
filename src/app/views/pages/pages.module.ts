@@ -6,9 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
-import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
+import { ButtonModule, CardModule, FormModule, GridModule, ToastModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LibraryComponent } from './library/library.component';
+import { SecretpageComponent } from './secretpage/secretpage.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     Page404Component,
-    Page500Component
+    Page500Component,
+    LibraryComponent,
+    SecretpageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     GridModule,
     IconModule,
-    FormModule
+    FormModule,
+    ToastModule
   ]
 })
 export class PagesModule {
