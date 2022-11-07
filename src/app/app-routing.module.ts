@@ -79,6 +79,7 @@ const routes: Routes = [
   },
   {
     path: 'library',
+    canActivate: [AuthGuard],
     component: LibraryComponent,
     data: {
       title: 'Library'

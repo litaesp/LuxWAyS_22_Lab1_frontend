@@ -432,8 +432,10 @@ export class UsersService {
             if (removeToken == null) {
                 return false;
             }
+        }else if(authToken){
+            return true;
         }
-        return true;
+        return false;
     }
     doLogout() {
         let removeToken = localStorage.removeItem('access_token');
