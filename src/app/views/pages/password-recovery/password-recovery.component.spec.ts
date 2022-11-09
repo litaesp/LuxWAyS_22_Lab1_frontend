@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridModule, WidgetModule } from '@coreui/angular';
-import { ChartjsModule } from '@coreui/angular-chartjs';
+import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
+import { IconModule } from '@coreui/icons-angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../../../icons/icon-subset';
-import { WidgetsEComponent } from './widgets-e.component';
+import { PasswordRecoveryComponent } from './password-recovery.component';
 
-describe('WidgetsEComponent', () => {
-  let component: WidgetsEComponent;
-  let fixture: ComponentFixture<WidgetsEComponent>;
+describe('PasswordRecoveryComponent', () => {
+  let component: PasswordRecoveryComponent;
+  let fixture: ComponentFixture<PasswordRecoveryComponent>;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetsEComponent ],
-      imports: [WidgetModule, GridModule, ChartjsModule],
+      declarations: [ PasswordRecoveryComponent ],
+      imports: [CardModule, FormModule, GridModule, ButtonModule, IconModule],
       providers: [IconSetService]
     })
     .compileComponents();
@@ -24,7 +24,7 @@ describe('WidgetsEComponent', () => {
     iconSetService = TestBed.inject(IconSetService);
     iconSetService.icons = { ...iconSubset };
 
-    fixture = TestBed.createComponent(WidgetsEComponent);
+    fixture = TestBed.createComponent(PasswordRecoveryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

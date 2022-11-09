@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DropdownModule } from '@coreui/angular';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -11,7 +12,8 @@ import { IconModule } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibraryComponent } from './library/library.component';
 import { SecretpageComponent } from './secretpage/secretpage.component';
-
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { SetPasswordComponent } from './password-recovery/set-password/set-password.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SecretpageComponent } from './secretpage/secretpage.component';
     Page404Component,
     Page500Component,
     LibraryComponent,
-    SecretpageComponent
+    PasswordRecoveryComponent,
+    SecretpageComponent,
+    SetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,7 @@ import { SecretpageComponent } from './secretpage/secretpage.component';
     GridModule,
     IconModule,
     FormModule,
+    DropdownModule,
     ToastModule
   ]
 })

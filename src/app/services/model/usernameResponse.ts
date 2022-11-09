@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface InlineResponse2006 { 
+export interface UsernameResponse { 
     username?: string;
     email?: string;
+    answer?: string;
+
 }

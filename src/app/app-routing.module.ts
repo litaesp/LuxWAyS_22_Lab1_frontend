@@ -8,6 +8,9 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from "./utils/auth.guard";
 import { LibraryComponent } from './views/pages/library/library.component';
+import { PasswordRecoveryComponent } from './views/pages/password-recovery/password-recovery.component';
+import { SetPasswordComponent } from './views/pages/password-recovery/set-password/set-password.component';
+import { ListUserComponent } from './views/admin/list-user/list-user.component';
 
 const routes: Routes = [
   {
@@ -24,28 +27,16 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'icons',
-        canActivate: [AuthGuard],
-        loadChildren: () =>
-          import('./views/icons/icons.module').then((m) => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        canActivate: [AuthGuard],
-        loadChildren: () =>
-          import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
-      },
-      {
-        path: 'widgets',
-        canActivate: [AuthGuard],
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
-      },
-      {
         path: 'pages',
         canActivate: [AuthGuard],
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
+      },
+      {
+        path: 'admin',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./views/admin/admin.module').then((m) => m.AdminModule)
       },
     ]
   },
@@ -86,12 +77,37 @@ const routes: Routes = [
     },
   },
   {
+    path: 'admin/users',
+    canActivate: [AuthGuard],
+    component: ListUserComponent,
+    data: {
+      title: 'Utilisateurs',
+      //role: 'admin'
+    },
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data: {
       title: 'Login Page'
     }
   },
+
+  {
+    path: 'password-recovery',
+    component: PasswordRecoveryComponent,
+    data: {
+      title: 'Récupération de mot de passe'
+    }
+  },
+  {
+    path: 'password-reset',
+    component: SetPasswordComponent,
+    data: {
+      title: 'Récupération de mot de passe'
+    }
+  },
+  
   {path: '**', redirectTo: '404'}
 ];
 
@@ -100,7 +116,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
       anchorScrolling: 'enabled',
-      initialNavigation: 'enabledBlocking'
+      initialNavigation: 'enabledBlocking',
+      onSameUrlNavigation: 'reload'
       // relativeLinkResolution: 'legacy'
     })
   ],

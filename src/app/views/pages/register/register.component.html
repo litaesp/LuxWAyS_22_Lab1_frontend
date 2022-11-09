@@ -1,5 +1,13 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <c-container>
+    <c-toaster placement="top-end" position="absolute">
+      <c-toast color="danger" *ngIf="errorMessage" [autohide]="false" visible>
+      <c-toast-header>
+      <strong class="me-auto">L'enregistrement a échoue</strong>
+      </c-toast-header>
+      <c-toast-body>{{errorMessage}}</c-toast-body>
+      </c-toast>
+    </c-toaster>
     <c-row class="justify-content-center">
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
@@ -28,6 +36,23 @@
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
                 <input autoComplete="new-password" cFormControl placeholder="Répéter le mot de passe" type="password" formControlName="newpassword2" />
+              </c-input-group>
+
+              <c-dropdown class="mb-3">
+                <button cButton cDropdownToggle color="secondary">
+                  Veuillez choisir une question secrete
+                </button>
+                <ul cDropdownMenu>
+                  <li><a [routerLink]="[]" cDropdownItem>Quel était le nom de votre premier animal de compagnie</a></li>
+                  <li><a [routerLink]="[]" cDropdownItem>Quel est le nom de jeune fille de votre mère</a></li>
+                  <li><a [routerLink]="[]" cDropdownItem>Dans quel ville êtes-vous née</a></li>
+                </ul>
+              </c-dropdown>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilTags"></svg>
+                </span>
+                <input id=answer autoComplete="answer" cFormControl placeholder="Reponse question secrete" formControlName="answer" />
               </c-input-group>
               <div class="d-grid">
                 <button cButton type="submit" color="success">Créer un compte</button>

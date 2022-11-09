@@ -1,18 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, OnChanges } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { UsersService } from 'src/app/services/api/users.service';
 
-import { navItems } from './_nav';
+import { navItems, navItemsAdmin } from './_nav';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
 })
-export class DefaultLayoutComponent {
+export class DefaultLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
   public navItems = navItems;
-
+  isAdmin: boolean = false;
   public perfectScrollbarConfig = {
     suppressScrollX: true,
   };
 
-  constructor() {}
+  constructor(private userService: UsersService, private router: Router) {
+  }
+  ngOnInit(): void {
+    this.updateNav();
+
+  }
+
+  ngOnChanges() {
+    this.updateNav();
+  }
+
+  async updateNav() {
+    this.isAdmin = this.userService.getRole() === 'admin';
+    if (this.isAdmin) {
+      this.navItems = navItemsAdmin;
+    }
+    else {
+      this.navItems = navItems;
+    }
+  }
+
+  @HostListener('unloaded')
+  ngOnDestroy() {
+    this.updateNav();
+    console.log('destroying');
+    this.navItems = navItems;
+    this.isAdmin = false;
+  }
 }
