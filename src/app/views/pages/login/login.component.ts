@@ -24,10 +24,7 @@ export class LoginComponent{
       if(res.auth_token){
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
         localStorage.setItem('access_token', res.auth_token);
-        this.router.navigateByUrl('/',{skipLocationChange: true}).then(()=>{
-          //this.router.navigateByUrl(returnUrl);
-          this.router.navigate([returnUrl])
-        })
+        this.router.navigateByUrl(returnUrl)
       }else {
         this.errorMessage = res.message ? res.message : '';
       }

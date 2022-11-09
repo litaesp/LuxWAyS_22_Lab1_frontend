@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface InlineResponse2002 { 
+export interface UserAdminView { 
     email?: string;
     username?: string;
 }

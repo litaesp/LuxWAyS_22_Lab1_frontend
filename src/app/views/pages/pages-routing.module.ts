@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
 import { SecretpageComponent } from './secretpage/secretpage.component';
+import { ListUserComponent } from '../admin/list-user/list-user.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,13 @@ const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'admin/users',
+    component: ListUserComponent,
+    data: {
+      title: 'Utilisateurs'
     }
   },
   {

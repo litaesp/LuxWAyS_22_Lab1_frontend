@@ -8,7 +8,7 @@ import { navItems, navItemsAdmin } from './_nav';
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
 })
-export class DefaultLayoutComponent implements OnInit, OnChanges, OnDestroy {
+export class DefaultLayoutComponent implements OnInit, OnDestroy {
 
   public navItems = navItems;
   isAdmin: boolean = false;
@@ -19,11 +19,6 @@ export class DefaultLayoutComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private userService: UsersService, private router: Router) {
   }
   ngOnInit(): void {
-    this.updateNav();
-
-  }
-
-  ngOnChanges() {
     this.updateNav();
   }
 
@@ -41,7 +36,7 @@ export class DefaultLayoutComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this.updateNav();
     console.log('destroying');
-    this.navItems = navItems;
+    this.navItems = [];
     this.isAdmin = false;
   }
 }

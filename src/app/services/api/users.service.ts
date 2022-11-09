@@ -7,7 +7,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
-import { InlineResponse2002 } from '../model/inlineResponse2002';
+import { UserAdminView } from '../model/user-admin-view.model';
 import { InlineResponse2003 } from '../model/inlineResponse2003';
 import { InlineResponse2004 } from '../model/inlineResponse2004';
 import { InlineResponse2005 } from '../model/inlineResponse2005';
@@ -141,9 +141,9 @@ export class UsersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsUsersGetAllUsers(observe?: 'body', reportProgress?: boolean): Observable<Array<InlineResponse2002>>;
-    public apiViewsUsersGetAllUsers(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<InlineResponse2002>>>;
-    public apiViewsUsersGetAllUsers(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<InlineResponse2002>>>;
+    public apiViewsUsersGetAllUsers(observe?: 'body', reportProgress?: boolean): Observable<Array<UserAdminView>>;
+    public apiViewsUsersGetAllUsers(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<UserAdminView>>>;
+    public apiViewsUsersGetAllUsers(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<UserAdminView>>>;
     public apiViewsUsersGetAllUsers(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -161,7 +161,7 @@ export class UsersService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<InlineResponse2002>>('get', `${this.basePath}/users/v1`,
+        return this.httpClient.request<Array<UserAdminView>>('get', `${this.basePath}/users/v1`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -431,6 +431,7 @@ export class UsersService {
         if (removeToken == null) {
             this.router.navigate(['login']);
         }
+        this.roleAs="";
     }
 
     private tokenExpired(token: string) {

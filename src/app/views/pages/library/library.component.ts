@@ -16,6 +16,7 @@ export class LibraryComponent implements OnInit {
   constructor(private bookServices: BooksService,  private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+
     this.bookServices.getAllBooks().subscribe((bs)=>{
       if(bs && bs.Books){
         this.books= bs.Books;

@@ -24,8 +24,8 @@ export const navItemsAdmin: INavData[] = [
     title: true
   },
   {
-    name: 'utilisateurs',
-    url: '/admin/users',
+    name: 'Utilisateurs',
+    url: '/pages/admin/users',
     iconComponent: { name: 'cil-user' }
   },
 ];
