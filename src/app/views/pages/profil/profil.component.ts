@@ -44,7 +44,7 @@ export class ProfilComponent implements OnInit {
     console.log(this.profilForm.value);
     this.userServices.apiViewsUsersUpdateAccount(this.profilForm.value,this.userId).subscribe((response)=>{
       this.message=response;
-      this.router
+      this.router.navigateByUrl('')
     },
     (error)=> {
       this.errorMessage = error.message;
