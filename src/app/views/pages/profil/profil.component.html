@@ -1,0 +1,38 @@
+<c-container>
+    <c-toaster placement="top-end" position="absolute">
+      <c-toast color="danger" *ngIf="errorMessage" [autohide]="false" visible>
+      <c-toast-header>
+      <strong class="me-auto">Erreur</strong>
+      </c-toast-header>
+      <c-toast-body>{{errorMessage}}</c-toast-body>
+      </c-toast>
+    </c-toaster>
+    <c-toaster placement="top-end" position="absolute">
+        <c-toast color="danger" *ngIf="message" [autohide]="false" visible>
+        <c-toast-header>
+        <strong class="me-auto">Erreur</strong>
+        </c-toast-header>
+        <c-toast-body>{{message}}</c-toast-body>
+        </c-toast>
+      </c-toaster>
+<c-card>
+    <img cCardImg="top" src="./assets/img/writter.jpg">
+    <c-card-body>
+        <h3 cCardTitle>{{username}}</h3>
+        <form cForm [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label cLabel for="email">Email</label>
+                <input cFormControl placeholder="Email" formControlName="email" id="email" type="email">
+                <div cFormText>
+                    We'll never share your email with anyone else
+                </div>
+            </div>
+            <div class="mb-3">
+                <label cLabel for="account">Numero de compte de dépôt</label>
+                <input cFormControl placeholder="Compte bancaire" formControlName="account" id="account">
+            </div>
+            <button cButton type="submit" color="success">Mettre à jour</button>
+        </form>
+    </c-card-body>
+</c-card>
+</c-container>

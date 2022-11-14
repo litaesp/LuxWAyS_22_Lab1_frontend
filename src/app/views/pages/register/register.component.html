@@ -38,16 +38,13 @@
                 <input autoComplete="new-password" cFormControl placeholder="Répéter le mot de passe" type="password" formControlName="newpassword2" />
               </c-input-group>
 
-              <c-dropdown class="mb-3">
-                <button cButton cDropdownToggle color="secondary">
-                  Veuillez choisir une question secrete
-                </button>
-                <ul cDropdownMenu>
-                  <li><a [routerLink]="[]" cDropdownItem>Quel était le nom de votre premier animal de compagnie</a></li>
-                  <li><a [routerLink]="[]" cDropdownItem>Quel est le nom de jeune fille de votre mère</a></li>
-                  <li><a [routerLink]="[]" cDropdownItem>Dans quel ville êtes-vous née</a></li>
-                </ul>
-              </c-dropdown>
+              <select class="mb-3" required aria-label="Default select example" cSelect>
+                <option>Quel etait votre question secrete?</option>
+                <option value="1">Quel était le nom de votre animal de compagnie?</option>
+                <option value="2">Quel est le nom de jeune fille de votre mère?</option>
+                <option value="3">Dans quelle ville êtes-vous née?</option>
+              </select>
+              
               <c-input-group class="mb-3">
                 <span cInputGroupText>
                   <svg cIcon name="cilTags"></svg>

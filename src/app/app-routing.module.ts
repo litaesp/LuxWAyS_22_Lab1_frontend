@@ -7,10 +7,10 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AuthGuard } from "./utils/auth.guard";
-import { LibraryComponent } from './views/pages/library/library.component';
 import { PasswordRecoveryComponent } from './views/pages/password-recovery/password-recovery.component';
 import { SetPasswordComponent } from './views/pages/password-recovery/set-password/set-password.component';
-import { ListUserComponent } from './views/admin/list-user/list-user.component';
+import { Page401Component } from './views/pages/page401/page401.component';
+import { ProfilComponent } from './views/pages/profil/profil.component';
 
 const routes: Routes = [
   {
@@ -23,16 +23,22 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'Home'
+      title: 'Accueil'
     },
     children: [
       {
         path: 'pages',
-        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       }
     ]
+  },
+  {
+    path: '404',
+    component: Page404Component,
+    data: {
+      title: 'Page 404'
+    }
   },
   {
     path: '404',
@@ -61,23 +67,6 @@ const routes: Routes = [
     data: {
       title: 'Register Page'
     }
-  },
-  {
-    path: 'library',
-    canActivate: [AuthGuard],
-    component: LibraryComponent,
-    data: {
-      title: 'Library'
-    },
-  },
-  {
-    path: 'admin/users',
-    canActivate: [AuthGuard],
-    component: ListUserComponent,
-    data: {
-      title: 'Utilisateurs',
-      //role: 'admin'
-    },
   },
   {
     path: 'login',

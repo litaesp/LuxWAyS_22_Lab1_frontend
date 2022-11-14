@@ -212,6 +212,47 @@ export class UsersService {
         );
     }
 
+        /**
+     * Retrieves user by id
+     * Displays user by username
+     * @param username retrieve username data
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+         public apiViewsUsersGetById(id: string, observe?: 'body', reportProgress?: boolean): Observable<UsernameResponse>;
+         public apiViewsUsersGetById(id: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UsernameResponse>>;
+         public apiViewsUsersGetById(id: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UsernameResponse>>;
+         public apiViewsUsersGetById(id: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+     
+             if (id === null || id === undefined) {
+                 throw new Error('Required parameter id was null or undefined when calling apiViewsUsersGetByUsername.');
+             }
+     
+             let headers = this.defaultHeaders;
+     
+             // to determine the Accept header
+             let httpHeaderAccepts: string[] = [
+                 'application/json'
+             ];
+             const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+             if (httpHeaderAcceptSelected != undefined) {
+                 headers = headers.set('Accept', httpHeaderAcceptSelected);
+             }
+     
+             // to determine the Content-Type header
+             const consumes: string[] = [
+             ];
+     
+             return this.httpClient.request<UsernameResponse>('get', `${this.basePath}/users/v1/${encodeURIComponent(String(id))}/account`,
+                 {
+                     withCredentials: this.configuration.withCredentials,
+                     headers: headers,
+                     observe: observe,
+                     reportProgress: reportProgress
+                 }
+             );
+         }
+     
     /**
      * Login to VAmPI
      * Login to VAmPI
@@ -366,10 +407,10 @@ export class UsersService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery:boolean, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery:boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery:boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery:boolean= false, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery: boolean, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiViewsUsersUpdatePassword(body: UsernamePasswordBody, username: string, isRecovery: boolean = false, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling apiViewsUsersUpdatePassword.');
@@ -409,19 +450,58 @@ export class UsersService {
             }
         );
     }
+    public apiViewsUsersUpdateAccount(body: any, userId: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling apiViewsUsersUpdateEmail.');
+        }
+
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling apiViewsUsersUpdateAccount.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put', `${this.basePath}/users/v1/${encodeURIComponent(String(userId))}/account`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
     getToken() {
         return localStorage.getItem('access_token');
     }
 
     get isLoggedIn(): boolean {
         let authToken = localStorage.getItem('access_token');
-        if(authToken && this.tokenExpired(authToken)){
+        if (authToken && this.tokenExpired(authToken)) {
             let removeToken = localStorage.removeItem('access_token');
             if (removeToken == null) {
                 return false;
             }
-        }else if(authToken){
+        } else if (authToken) {
             return true;
         }
         return false;
@@ -431,7 +511,7 @@ export class UsersService {
         if (removeToken == null) {
             this.router.navigate(['login']);
         }
-        this.roleAs="";
+        this.roleAs = "";
     }
 
     private tokenExpired(token: string) {
@@ -440,11 +520,11 @@ export class UsersService {
     }
 
     public getRole() {
-        if(this.isLoggedIn){
+        if (this.isLoggedIn) {
             let authToken = localStorage.getItem('access_token');
-            if(authToken){
+            if (authToken) {
                 const parseToken = this.getDecodedAccessToken(authToken);
-                if(parseToken && parseToken.admin){
+                if (parseToken && parseToken.admin) {
                     this.roleAs = 'admin'
                 }
             }
@@ -452,11 +532,31 @@ export class UsersService {
         return this.roleAs;
     }
 
+    public getUsername() {
+        if (this.isLoggedIn) {
+            let authToken = localStorage.getItem('access_token');
+            if (authToken) {
+                const parseToken = this.getDecodedAccessToken(authToken);
+                return parseToken.sub;
+            }
+        }
+    }
+
+    public getUserId() {
+        if (this.isLoggedIn) {
+            let authToken = localStorage.getItem('access_token');
+            if (authToken) {
+                const parseToken = this.getDecodedAccessToken(authToken);
+                return parseToken.id;
+            }
+        }
+    }
+
     private getDecodedAccessToken(token: string): any {
         try {
-          return jwt_decode(token);
-        } catch(Error) {
-          return null;
+            return jwt_decode(token);
+        } catch (Error) {
+            return null;
         }
-      }
+    }
 }

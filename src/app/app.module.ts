@@ -88,6 +88,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     ProgressModule,
     BadgeModule,
+    FormModule,
     ListGroupModule,
     CardModule
   ],

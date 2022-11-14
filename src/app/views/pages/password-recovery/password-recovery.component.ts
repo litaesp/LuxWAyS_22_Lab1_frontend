@@ -24,7 +24,6 @@ export class PasswordRecoveryComponent {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     if(this.regForm.value.username){
-      console.log('a');
       this.getUser(this.regForm.value.username);
       if(this.user.answer && this.regForm.value.answer === this.user.answer){
         this.router.navigate(['/password-reset'], {state: {username: this.user?.username}});

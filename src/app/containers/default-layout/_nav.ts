@@ -10,6 +10,11 @@ export const navItems: INavData[] = [
     name: 'Ma bibliotheque',
     url: '/pages/library',
     iconComponent: { name: 'cil-calculator' },
+  },
+  {
+    name: 'Nouveau projet',
+    url: '/pages/library/create',
+    iconComponent: { name: 'cil-calculator' },
     badge: {
       color: 'info',
       text: 'NEW'

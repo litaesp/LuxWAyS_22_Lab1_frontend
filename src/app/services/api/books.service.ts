@@ -185,4 +185,12 @@ export class BooksService {
         );
     }
 
+    public fetchUrl(url: string, observe: any = 'body'): Observable<any> {
+        return this.httpClient.get(`${this.basePath}/books/v1/file?url=${url}`,
+        {
+            responseType: 'text'
+        });
+    }
+
+
 }

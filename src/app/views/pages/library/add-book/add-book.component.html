@@ -1,0 +1,46 @@
+
+<c-container>
+    <c-row class="justify-content-center">
+        <c-col md="'">
+            <c-card class="mx-4">
+                <c-card-body class="p-4">
+                  <form cForm [formGroup]="addForm"  (ngSubmit)="onSubmit()">
+                    <h1>Nouveau projet d'écriture</h1>
+                    <c-input-group class="mb-4">
+                      <span cInputGroupText>
+                        <label cLabel for="titre">Titre</label>
+                      </span>
+                        <input type="text" id=titre cFormControl formControlName="title" autoComplete="titre" placeholder="Veullez saisir le titre de votre livre" required />
+                    </c-input-group>
+                    <c-form-check [switch]="true" class="mb-4">
+                      <input cFormCheckInput type="checkbox" cFormControl formControlName="urlAvailable" />
+                      <label cFormCheckLabel>Souhaitez vous importer le résumé</label>
+                    </c-form-check>
+                    <div *ngIf="addForm.value.urlAvailable">
+                    <c-input-group class="mb-3">
+                      <input aria-describedby="button-addon2"
+                             aria-label="URL"
+                             formControlName="url"
+                             cFormControl
+                             placeholder="URL google drive vers le résumé"
+                      />
+                      <button cButton  (click)="fetchRessource()" color="primary" id="button-addon2" type="button" variant="outline">
+                        Charger
+                      </button>
+                    </c-input-group>
+                  </div>
+
+                <div cFormFloating class="gy-5">
+                  <textarea formControlName="resume" cFormControl id="resume"></textarea>
+                  <label cLabel for="resume">Resume</label>
+                  </div>
+
+                    <div class="d-grid mt-2">
+                      <button cButton type="submit" color="success">Confirmer</button>
+                    </div>
+                  </form>
+                </c-card-body>
+              </c-card>
+            </c-col>
+        </c-row>
+</c-container>
