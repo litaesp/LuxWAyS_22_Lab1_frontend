@@ -34,10 +34,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: '404',
-    component: Page404Component,
+    path: '401',
+    component: Page401Component,
     data: {
-      title: 'Page 404'
+      title: 'Page 401'
     }
   },
   {

@@ -12,6 +12,7 @@ import { UsernameResponse } from 'src/app/services/model/usernameResponse';
 })
 export class ProfilComponent implements OnInit {
 
+  isVulnerable:boolean=false;
   message:string ='';
   errorMessage:string='';
   username:string = '';
@@ -25,9 +26,17 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => { 
-       let userId = params.get('id'); 
-       if(userId){
-        this.userId=userId;
+      let userParam = params.get('id');
+      if(!this.isVulnerable){
+        let userId = this.userServices.getUserId();
+        if(userParam != userId){
+          console.log(userParam);
+          console.log(userId);
+          this.router.navigateByUrl("401");
+        }
+      }
+       if(userParam){
+        this.userId=userParam;
        }
        let user=this.userServices.apiViewsUsersGetById(this.userId).subscribe((u:UsernameResponse)=>{
         this.user=u;
