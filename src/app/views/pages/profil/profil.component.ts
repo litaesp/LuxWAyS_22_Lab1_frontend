@@ -12,7 +12,7 @@ import { UsernameResponse } from 'src/app/services/model/usernameResponse';
 })
 export class ProfilComponent implements OnInit {
 
-  isVulnerable:boolean=false;
+  isVulnerable:boolean=true;
   message:string ='';
   errorMessage:string='';
   username:string = '';

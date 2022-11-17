@@ -1,0 +1,22 @@
+Challenge 1 — Attaque:
+	Niveau: Difficile
+	Commentaire: compétence réseau, administration Linux, et cloud requis
+Objectif: Recuperer une ressource d'un serveur qui est accessible que dans le réseau local (VNIC)
+Sommaire des étapes:
+	1- Créer une deuxième instance sur le même subnet que l'instance kali avec Ubuntu ou CentOS en fonction de celui que vous maitriser le mieux
+	2- Ajouter le service FTP à cette instance
+	3- Créer un fichier texte avec le message : A10 maitrisé
+	3- Vérifier que le service FTP est accessible depuis la machine Kali via son adresse IP privée
+		-Sinon, créer une nouvelle règle ingress dans le groupe de sécurité pour le permettre(voir https://docs.oracle.com/fr-fr/iaas/Content/Network/Concepts/securitylists.htm)
+	4- Depuis l'application, exploitez la vulnérabilité SSRF pour récupérer le fichier
+
+Challenge 2 — corriger le bug
+	Niveau: Moyen
+	Commentaire: compétence de développement, compréhension de code requis
+Contexte: vous venez d'être recruté par une compagnie pour les aider à corriger des vulnérabilités dans leur système existant.
+L'application a été analysée par un DAST et est déterminée vulnérable au SSRF. Les managers insistent pour conserver la fonctionnalité.
+Ils sont prêts à n'accepter que des URL de github.
+Objectif: Créer un white listé pour ne permettre que des URLs de raw de github
+Sommaire des étapes:
+	1- Dans le dossier du backend de l'application de l'évènement, identifiez le code source responsable de la vulnérabilité SSRF
+	2- Corriger la vulnérabilité
