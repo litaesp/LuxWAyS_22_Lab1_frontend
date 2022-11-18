@@ -1,0 +1,7 @@
+Challenge — Journalisation:
+
+Commentaire: Compétence en développement et compréhension de code requis.
+
+Contexte : Lorsque vous exécutez l'application sur un serveur distant pour la production, vous ne regarderez probablement pas les messages de journal très souvent. Du coup certains événements critiques peuvent se passer sans pour autant que vous soyez au courant. Ainsi il est donc nécessaire configurer le système pour qu'il vous alertes directement s'il se passe des événements critiques sur votre application.
+
+Objectif: Envoyer un courriel lorsque des erreurs sont enregistrées.
