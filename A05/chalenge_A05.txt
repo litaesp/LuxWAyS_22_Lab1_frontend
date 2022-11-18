@@ -1,0 +1,14 @@
+Description:
+  Cette fois-ci notre appliation utilise un serveur Nginx à la place de Apache.
+  Dans le serveur Nginx, il y a des fichiers confidentiels qui sont placés dans un répertoire ftp/
+  
+
+Objectifs:
+ 1. On suppose qu'on n'a pas accès au serveur Nginx.
+    L'objectif ici est de vérifier si le serveur Nginx expose les fichiers confidentiels qui y sont sotckés.
+
+ 2. Si c'est le cas, essayer de corriger cette mauvaise configuration.
+
+
+
+!!!!!GOOD LUCK!!!!!
