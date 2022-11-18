@@ -1,0 +1,10 @@
+LOrs de la présentationj de la vulnérabilité A07: Identification et auhtentification de mauvaise quqlité,
+Nous avions présenté le password enumeration qui peut aider un attaquant à obtenir illicitement les login et mots de passe d'un système en donnant des messages d'erreur très explicite lorsque l'utilisateur entre un login ou un mot de passe incorrecte (voir capture ci dessous)
+Par exemple dans application  "LuxWAyS_22_Lab1", s'il existe dans le système un utilisateur ayant comme login "testeur" et comme mot de passe "monVraiPwd", lorsqu'on essaie de se connecter en mettant comme login "testeur" et comme mot de passe "UnFauxPwd", le système va générer un message d'erreur disant "Password is not correct for the given username."
+donc l'application  "LuxWAyS_22_Lab1" présente une vulnérabilité pouvant être exploitée pour faire 1 password enumeration. 
+  (1) Utiliser l'outil zap pour détecter cette vulnérabilité. Notez: Quelqu'un qui réussit ce challenge verra donc son outil Zap détecté une vulnérabilité ayant "200" comme "Id CWE"
+  (2) Corriger le code de sorte à corriger cette Vulnérabilité. Si vous n'arrivez pas à trouver le fichier contenant le code vulnérable, ouvrez le fichier "A07ChalIndications.txt" la référence [1]vous donne le chemin du fichier contenant le code vulnérable
+  (3)  Dans le même fichier :implémenter quelques bonnes pratiques pour l'authentification 
+  
+  Notez les codes étant en python, ce qui n'ont pas l'habitude d'utiliser python, vous avez le choix d'écrire les algorithmes sans les implémenter.
+  (4) Après impléentation de (3) et (4), retester votre applicationation  avec l'outil zap pour voir si le password enumeration est encore détecté
