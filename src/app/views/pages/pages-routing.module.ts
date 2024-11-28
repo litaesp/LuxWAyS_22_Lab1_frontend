@@ -10,6 +10,7 @@ import { ListUserComponent } from '../admin/list-user/list-user.component';
 import { AddBookComponent } from './library/add-book/add-book.component';
 import { AuthGuard } from 'src/app/utils/auth.guard';
 import { ProfilComponent } from './profil/profil.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Bibliotheque'
+    }
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Recherche'
     }
   },
   {

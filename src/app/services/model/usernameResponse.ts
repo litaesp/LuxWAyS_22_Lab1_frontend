@@ -11,7 +11,7 @@
  */
 
 export interface UsernameResponse { 
-    username?: string;
+    username?: any;
     email?: string;
     answer?: string;
     account?: string;

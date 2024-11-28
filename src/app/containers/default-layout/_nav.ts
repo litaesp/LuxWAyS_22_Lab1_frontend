@@ -12,6 +12,11 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-calculator' },
   },
   {
+    name: 'Recherche d\'utilisateur',
+    url: '/pages/search',
+    iconComponent: { name: 'cil-speedometer' },
+  },
+  {
     name: 'Nouveau projet',
     url: '/pages/library/create',
     iconComponent: { name: 'cil-calculator' },

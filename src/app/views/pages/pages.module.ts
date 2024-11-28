@@ -18,6 +18,7 @@ import { SetPasswordComponent } from './password-recovery/set-password/set-passw
 import { ListUserComponent } from '../admin/list-user/list-user.component';
 import { AddBookComponent } from './library/add-book/add-book.component';
 import { ProfilComponent } from './profil/profil.component';
+import { SearchComponent } from './search/search.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfilComponent } from './profil/profil.component';
     SetPasswordComponent,
     ListUserComponent,
     AddBookComponent,
-    ProfilComponent
+    ProfilComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

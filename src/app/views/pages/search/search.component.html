@@ -1,0 +1,35 @@
+<c-container>
+    <c-toaster placement="top-end" position="absolute">
+      <c-toast color="danger" *ngIf="errorMessage" [autohide]="false" visible>
+      <c-toast-header>
+      <strong class="me-auto">Erreur</strong>
+      </c-toast-header>
+      <c-toast-body>{{errorMessage}}</c-toast-body>
+      </c-toast>
+    </c-toaster>
+    <c-toaster placement="top-end" position="absolute">
+        <c-toast color="danger" *ngIf="message" [autohide]="false" visible>
+        <c-toast-header>
+        <strong class="me-auto">Erreur</strong>
+        </c-toast-header>
+        <c-toast-body>{{message}}</c-toast-body>
+        </c-toast>
+      </c-toaster>
+<c-card>
+    <img cCardImg="top" src="./assets/img/writter.jpg">
+    <c-card-body>
+        <h3 cCardTitle>Recherche Utilisateur</h3>
+        <form cForm [formGroup]="searchForm" (ngSubmit)="getUser()">
+            <div class="mb-3">
+                <label cLabel for="username">recherche d'utilisateur</label>
+                <input cFormControl placeholder="username" formControlName="username" id="username" type="input">
+            </div>
+            <button cButton type="submit" color="success">Rechercher</button>
+        </form>
+        <div class="mb-3">
+            <p>Username: {{user.username}}</p>
+            <p>Email: {{user.email}}</p>
+        </div>
+    </c-card-body>
+</c-card>
+</c-container>
