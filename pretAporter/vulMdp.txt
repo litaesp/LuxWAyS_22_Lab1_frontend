@@ -1,4 +1,3 @@
-pass1
 123456
 password
 12345678
@@ -100,4 +99,3 @@ thunder
 taylor
 matrix
 minecraft
-pass1
